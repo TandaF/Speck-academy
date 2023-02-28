@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simple Input Form</title>
+    </head>
+    <body>
+        <h1>My technologies</h1>
+        <div class="buttons">
+            <div>
+                <input
+                    type="text"
+                    id="input"
+                    placeholder="Enter new technology..."
+                />
+                <button class="add-button" onclick="add()">Add</button>
+            </div>
+            <button class="delete-button" onclick="removeAll()">
+                Remove All Elements
+            </button>
+        </div>
+        <div id="grid"></div>
+
+        <script>
+            const add = () => {
+
+                var text = document.getElementById("input").value;
+
+
+                if (text === "") {
+                    alert("Please enter a value.");
+                    return;
+                }
+
+                var newItem = document.createElement("div");
+                newItem.className = "item";
+                newItem.innerHTML = text;
+
+                var grid = document.getElementById("grid");
+                grid.appendChild(newItem);
+
+                document.getElementById("input").value = "";
+            };
+
+            function removeAll() {
+
+                var grid = document.getElementById("grid");
+                while (grid.firstChild) {
+                    grid.removeChild(grid.firstChild);
+                }
+            }
+        </script>
+
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+            }
+
+            body {
+                max-width: 900px;
+                margin: 0 auto;
+            }
+
+            .buttons {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            #grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 12px;
+                margin-top: 20px;
+            }
+
+            .item {
+                text-align: center;
+                border-radius: 5px;
+                box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+                padding: 10px;
+                font-size: 24px;
+                font-weight: bold;
+            }
+
+            input {
+                border: 1px solid red;
+                padding: 10px;
+                border-radius: 5px;
+                box-sizing: border-box;
+            }
+
+            .add-button {
+                background-color: #ffcccc;
+                border: 1px solid red;
+                padding: 10px 20px;
+                border-radius: 5px;
+                font-weight: bold;
+                color: #333;
+                cursor: pointer;
+            }
+
+            .add-button:hover {
+                background-color: #ff9999;
+            }
+
+            .delete-button {
+                background: none;
+                border: none;
+                color: #ff9999;
+                text-decoration: underline;
+                cursor: pointer;
+            }
+
+            .delete-button:hover {
+                color: red;
+            }
+        </style>
+    </body>
+</html>
